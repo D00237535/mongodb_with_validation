@@ -49,6 +49,7 @@ export default class DisplayAllMovies extends Component
     {   
         return (           
             <div className="form-container">
+
                 <div className="table-container">
                     <MovieTable movies={this.state.movies} />
 
