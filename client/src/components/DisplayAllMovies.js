@@ -49,6 +49,10 @@ export default class DisplayAllMovies extends Component
     {   
         return (           
             <div className="form-container">
+                <div>
+                    <Link className="blue-button" to={"/Register"}>Register</Link>
+                    <Link className="red-button" to={"/ResetDatabase"}>Reset Database</Link>  <br/><br/><br/>
+                </div>
 
                 <div className="table-container">
                     <MovieTable movies={this.state.movies} />
