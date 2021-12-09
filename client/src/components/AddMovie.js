@@ -51,10 +51,13 @@ export default class AddMovie extends Component
         if (Object.keys(formInputsState).every(index => formInputsState[index])) 
         {
             const movieObject = {
-                model: this.state.title,
-                colour: this.state.year,
-                year: this.state.runtime,
-                price: this.state.,
+                title: this.state.title,
+                year: this.state.year,
+                runtime: this.state.runtime,
+                genre: this.state.genre,
+                actors: this.state.actors,
+                directors: this.state.directors,
+                plot: this.state.plot
                 wasSubmittedAtLeastOnce: false
             }
 
