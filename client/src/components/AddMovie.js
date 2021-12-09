@@ -139,37 +139,37 @@ export default class AddMovie extends Component
                     
                 <Form>
                                     <Form.Group controlId="Title">
-                                        <Form.Label>Title</Form.Label>
+                                        <Form.Label>title</Form.Label>
                                         <Form.Control ref = {(input) => { this.inputToFocus = input }} type="text" name="Title" value={this.state.Title} onChange={this.handleChange} />
                                     </Form.Group>
 
                                     <Form.Group controlId="Year">
-                                        <Form.Label>Year</Form.Label>
+                                        <Form.Label>year</Form.Label>
                                         <Form.Control type="text" name="Year" value={this.state.Year} onChange={this.handleChange} />
                                     </Form.Group>
 
                                     <Form.Group controlId="RunTime">
-                                        <Form.Label>RunTime</Form.Label>
+                                        <Form.Label>runtime</Form.Label>
                                         <Form.Control type="text" name="RunTime" value={this.state.RunTime} onChange={this.handleChange} />
                                     </Form.Group>
 
                                     <Form.Group controlId="Genre">
-                                        <Form.Label>Genre</Form.Label>
+                                        <Form.Label>genre</Form.Label>
                                         <Form.Control type="text" name="Genre" value={this.state.Genre} onChange={this.handleChange} />
                                     </Form.Group>
 
                                     <Form.Group controlId="Actors">
-                                        <Form.Label>Actors</Form.Label>
+                                        <Form.Label>actors</Form.Label>
                                         <Form.Control type="text" name="Actors" value={this.state.Actors} onChange={this.handleChange} />
                                     </Form.Group>
 
                                     <Form.Group controlId="Directors">
-                                        <Form.Label>Directors</Form.Label>
+                                        <Form.Label>directors</Form.Label>
                                         <Form.Control type="text" name="Directors" value={this.state.Directors} onChange={this.handleChange} />
                                     </Form.Group>
 
                                     <Form.Group controlId="Plot">
-                                        <Form.Label>Plot</Form.Label>
+                                        <Form.Label>plot</Form.Label>
                                         <Form.Control type="text" name="Plot" value={this.state.Plot} onChange={this.handleChange} />
                                     </Form.Group>
 
