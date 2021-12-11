@@ -27,34 +27,14 @@ router.get(`/movies/:id`, (req, res) =>
 router.post(`/movies`, (req, res) =>
 {
     // validate input
-    const today = new Date();
-    if(!/^[a-zA-Z]+$/.test(req.body.model))
-    {
-        res.json({errorMessage:`Model must be a string`}); 
-    }
-    else if(!/^[a-zA-Z]+$/.test(req.body.colour))
-    {
-        res.json({errorMessage:`Colour must be a string`});         
-    }
-    else if(req.body.year < 1990)     // between 1990 and the current year
-    {
-        res.json({errorMessage:`Year needs to be greater than or equal to 1990`});         
-    }
-    else if(req.body.year > today.getFullYear())
-    {
-        res.json({errorMessage:`Year needs to be this year or less`});         
-    }
-    else if(req.body.price < 1000 || req.body.price > 100000)       // between €1000 and €100000                
-    {
-        res.json({errorMessage:`Price needs to be between €1000 and €100000`}); 
-    }
-    else // input is valid
-    {    
+
+    // input is valid
+
         moviesModel.create(req.body, (error, data) =>
         {
             res.json(data)
         })
-    }
+
 })
 
 

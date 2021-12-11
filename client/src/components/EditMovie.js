@@ -14,10 +14,13 @@ export default class EditMovie extends Component
         super(props)
 
         this.state = {
-            model: ``,
-            colour: ``,
+            title: ``,
             year: ``,
-            price: ``,
+            runtime: ``,
+            genre: ``,
+            actors: ``,
+            directors: ``,
+            plot: ``,
             redirectToDisplayAllMovies:false
         }
     }
@@ -38,10 +41,13 @@ export default class EditMovie extends Component
                 else
                 { 
                     this.setState({
-                        model: res.data.model,
-                        colour: res.data.colour,
+                        title: res.data.title,
                         year: res.data.year,
-                        price: res.data.price
+                        runtime: res.data.runtime,
+                        genre: res.data.genre,
+                        actors: res.data.actors,
+                        directors: res.data.directors,
+                        plot: res.data.plot
                     })
                 }
             }
@@ -65,81 +71,66 @@ export default class EditMovie extends Component
 
         this.setState({ wasSubmittedAtLeastOnce: true });
 
-        const formInputsState = this.validate();
-        
-        if (Object.keys(formInputsState).every(index => formInputsState[index])) 
-        {
+
             const movieObject = {
-                model: this.state.model,
-                colour: this.state.colour,
+                title: this.state.title,
                 year: this.state.year,
-                price: this.state.price
+                runtime: this.state.runtime,
+                genre: this.state.genre,
+                actors: this.state.actors,
+                directors: this.state.directors,
+                plot: this.state.plot,
+                wasSubmittedAtLeastOnce: false
             }
 
-            axios.put(`${SERVER_HOST}/movies/${this.props.match.params.id}`, movieObject)
-            .then(res => 
-            {             
+            axios.post(`${SERVER_HOST}/movies`, movieObject)
+            .then(res =>
+            {
                 if(res.data)
                 {
                     if (res.data.errorMessage)
                     {
-                        console.log(res.data.errorMessage)    
+                        console.log(res.data.errorMessage)
                     }
                     else
-                    {      
-                        console.log(`Record updated`)
+                    {
+                        console.log("Record added")
                         this.setState({redirectToDisplayAllMovies:true})
                     }
                 }
                 else
                 {
-                    console.log(`Record not updated`)
+                    console.log("Record not added")
                 }
             })
-        }
+
     }
 
-
-    validateModel()
-    {    
-        const pattern = /^[A-Za-z]+$/;
-        return pattern.test(String(this.state.model))
-    }
-    
-    
-    validateColour()
-    {    
-        const pattern = /^[A-Za-z]+$/;
-        return pattern.test(String(this.state.colour))
-    }
-    
-    
-    validateYear()
-    {    
+    validateyear()
+    {
         const year = parseInt(this.state.year)
-        const today = new Date()   
+        const today = new Date()
+        console.log(year >= 1990 && year <= today.getFullYear())
         return (year >= 1990 && year <= today.getFullYear())
     }
 
-
-    validatePrice()
-    {    
-        const price = parseInt(this.state.price)
-        return (price >= 1000 && price <= 100000)
+    validateruntime()
+    {
+        const runtime = parseInt(this.state.runtime)
+        console.log(runtime > 0)
+        return (runtime > 0)
     }
 
 
-    validate() 
+    validate()
     {
         return {
-            model: this.validateModel(),
-            colour: this.validateColour(),
-            year: this.validateYear(),
-            price: this.validatePrice()
+            year: this.validateyear(),
+            runtime: this.validateruntime(),
         };
     }
-    
-    
+
+
     render() 
     {
         let errorMessage = "";

@@ -46,10 +46,7 @@ export default class AddMovie extends Component
 
         this.setState({ wasSubmittedAtLeastOnce: true });
 
-        const formInputsState = this.validate();
-        
-        if (Object.keys(formInputsState).every(index => formInputsState[index])) 
-        {
+
             const movieObject = {
                 title: this.state.title,
                 year: this.state.year,
@@ -57,7 +54,7 @@ export default class AddMovie extends Component
                 genre: this.state.genre,
                 actors: this.state.actors,
                 directors: this.state.directors,
-                plot: this.state.plot
+                plot: this.state.plot,
                 wasSubmittedAtLeastOnce: false
             }
 
@@ -81,46 +78,31 @@ export default class AddMovie extends Component
                     console.log("Record not added")
                 }
             })
-        }
+
     }
 
 
-    validateModel()
-    {    
-        const pattern = /^[A-Za-z]+$/;
-        return pattern.test(String(this.state.model))
-    }
-    
-    
-    validateColour()
-    {    
-        const pattern = /^[A-Za-z]+$/;
-        return pattern.test(String(this.state.colour))
-    }
-    
-    
-    validateYear()
-    {    
+    validateyear()
+    {
         const year = parseInt(this.state.year)
-        const today = new Date()   
+        const today = new Date()
+        console.log(year >= 1990 && year <= today.getFullYear())
         return (year >= 1990 && year <= today.getFullYear())
     }
 
-
-    validatePrice()
-    {    
-        const price = parseInt(this.state.price)
-        return (price >= 1000 && price <= 100000)
+    validateruntime()
+    {
+        const runtime = parseInt(this.state.runtime)
+        console.log(runtime > 0)
+        return (runtime > 0)
     }
 
 
     validate() 
     {
         return {
-            model: this.validateModel(),
-            colour: this.validateColour(),
-            year: this.validateYear(),
-            price: this.validatePrice()
+            year: this.validateyear(),
+            runtime: this.validateruntime(),
         };
     }
 
